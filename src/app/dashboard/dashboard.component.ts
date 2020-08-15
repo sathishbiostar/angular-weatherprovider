@@ -81,7 +81,6 @@ public enteredCity : string = "";
         if(this.getOfflineArray !="undefined" && this.getOfflineArray !=null){
           this.cityName = [];
           this.cityName = this.getOfflineArray;
-          debugger;
            this.subscription = this.everySecond.subscribe((seconds) => {
         for(let i=0;i<this.cityName.length;i++){
           if(this.cityName[i].enteredCity && this.cityName[i].enteredCity !="" && this.cityName[i].enteredCity != undefined && this.cityName[i].enteredCity !=null){
