@@ -76,13 +76,12 @@ public enteredCity : string = "";
         });
    }
     ngOnInit() {
-      
         this.getOfflineArray = JSON.parse(localStorage.getItem("resultArray"));
         if(this.getOfflineArray !="undefined" && this.getOfflineArray !=null){
           this.cityName = [];
           this.cityName = this.getOfflineArray;
            this.subscription = this.everySecond.subscribe((seconds) => {
-        for(let i=0;i<this.cityName.length;i++){
+          for(let i=0;i<this.cityName.length;i++){
           if(this.cityName[i].enteredCity && this.cityName[i].enteredCity !="" && this.cityName[i].enteredCity != undefined && this.cityName[i].enteredCity !=null){
           this.http.getWeatherDetails(this.cityName[i].enteredCity).subscribe((result) => {
             if(this.cityName[i].enableinput== true){
@@ -90,27 +89,18 @@ public enteredCity : string = "";
           this.cityName[i].enableedit = true;
           this.cityName[i].enableinput= false;
           this.cityName[i].enableEditClick = true;
-           
-         /*  setTimeout(()=>{
-            this.setHeight = this.elementView.nativeElement.offsetHeight;
-          },300); */
             }
-          
                 });
           }
-          
              }
       });
-         // this.onSubmit(this.cityName[0].enteredCity,0)
            setTimeout(()=>{
            this.setHeight = this.elementView.nativeElement.offsetHeight;
           },2000);
-        
         }
     }
     onSubmit(value,i) {
          this.http.getWeatherDetails(value).subscribe((result) => {
-          
           this.cityName[i].getWeatherResult = result;
           this.cityName[i].enableedit = true;
           this.cityName[i].enableinput= false;
@@ -119,34 +109,8 @@ public enteredCity : string = "";
             setTimeout(()=>{
             this.setHeight = this.elementView.nativeElement.offsetHeight;
           },1000);
-          
           localStorage.setItem("resultArray",JSON.stringify(this.cityName));
-         
-      this.count = this.count+1;
-      var customObj = {
-        value:value,
-        uniqueId:this.count
-      };
-      this.allCityNames.push(customObj);
      
-          /* setInterval(()=>{
-             for(let j=0;j<this.allCityNames.length;j++){
-          this.http.getWeatherDetails(this.allCityNames[i].value).subscribe((result) => {
-            if(this.cityName[i].enableinput== true){
-              this.cityName[i].getWeatherResult = result;
-          this.cityName[i].enableedit = true;
-          this.cityName[i].enableinput= false;
-          this.cityName[i].enableEditClick = true;
-           
-          setTimeout(()=>{
-            this.setHeight = this.elementView.nativeElement.offsetHeight;
-          },300);
-            }
-          
-                });
-             }
-            
-          },10000); */
          },
         (error) => {     
           this.cityName[i].error = error;
