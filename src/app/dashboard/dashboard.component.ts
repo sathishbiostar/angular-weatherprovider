@@ -17,7 +17,7 @@ styleUrls: ['./dashboard.component.css']
 export class DashboardComponent {
   @ViewChild('getHeight') elementView: ElementRef;
 private subscription: Subscription;
-  everySecond: Observable<number> = timer(0, 1000);
+  everySecond: Observable<number> = timer(0, 30000);
 weatherInputForm: FormGroup;
 submitted = false;
 count = 0;
@@ -81,6 +81,28 @@ public enteredCity : string = "";
         if(this.getOfflineArray !="undefined" && this.getOfflineArray !=null){
           this.cityName = [];
           this.cityName = this.getOfflineArray;
+          debugger;
+           this.subscription = this.everySecond.subscribe((seconds) => {
+        for(let i=0;i<this.cityName.length;i++){
+          if(this.cityName[i].enteredCity && this.cityName[i].enteredCity !="" && this.cityName[i].enteredCity != undefined && this.cityName[i].enteredCity !=null){
+          this.http.getWeatherDetails(this.cityName[i].enteredCity).subscribe((result) => {
+            if(this.cityName[i].enableinput== true){
+              this.cityName[i].getWeatherResult = result;
+          this.cityName[i].enableedit = true;
+          this.cityName[i].enableinput= false;
+          this.cityName[i].enableEditClick = true;
+           
+         /*  setTimeout(()=>{
+            this.setHeight = this.elementView.nativeElement.offsetHeight;
+          },300); */
+            }
+          
+                });
+          }
+          
+             }
+      });
+         // this.onSubmit(this.cityName[0].enteredCity,0)
            setTimeout(()=>{
            this.setHeight = this.elementView.nativeElement.offsetHeight;
           },2000);
@@ -107,23 +129,7 @@ public enteredCity : string = "";
         uniqueId:this.count
       };
       this.allCityNames.push(customObj);
-      /* this.subscription = this.everySecond.subscribe((seconds) => {
-        for(let j=0;j<this.allCityNames.length;j++){
-          this.http.getWeatherDetails(this.allCityNames[i].value).subscribe((result) => {
-            if(this.cityName[i].enableinput== true){
-              this.cityName[i].getWeatherResult = result;
-          this.cityName[i].enableedit = true;
-          this.cityName[i].enableinput= false;
-          this.cityName[i].enableEditClick = true;
-           
-          setTimeout(()=>{
-            this.setHeight = this.elementView.nativeElement.offsetHeight;
-          },300);
-            }
-          
-                });
-             }
-      }); */
+     
           /* setInterval(()=>{
              for(let j=0;j<this.allCityNames.length;j++){
           this.http.getWeatherDetails(this.allCityNames[i].value).subscribe((result) => {
