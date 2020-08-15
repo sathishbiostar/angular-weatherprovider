@@ -1,0 +1,57 @@
+
+h2{
+  margin-top: 20%;
+}
+.card{padding: 20px 5px;background-repeat: no-repeat;background-position: center top;background-color: #1af5b9;margin: 15px 0;border: none;
+    box-shadow: 0px 0px 5px 1px #ccc;
+    border-radius: 5px;
+    min-height: 135px;}
+.cityinput{
+  text-transform: uppercase;
+}
+.input-group{
+  margin-top: 30px;margin-bottom: 0 !important;
+}
+.input-group-text{
+  background-color: #01a91e;
+  color:#fff;
+  border: 1px solid #01a91e;
+}
+.description{
+  font-weight: bold;
+    text-transform: capitalize;
+}
+.cityinput::placeholder{
+  text-transform: capitalize;
+}
+.card-body input{padding: 5px}
+.fa-edit{
+  position: absolute;
+    top: 30px;
+    right: 30px;
+   color: #ffffff;
+    z-index: 9999;
+    font-size: 28px;
+}
+h1{
+  text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 0 5px 1px #00ff4e;
+    text-shadow: black;
+    color: #009f05;
+    padding: 20px;
+}
+.error{
+  width: 100%;
+    color: red;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.customWrapper{
+  position: relative
+}
+.card.activepage {
+    pointer-events: none;
+}
+.card.inactive {background-color:#073846;background-position: center 45%; }
