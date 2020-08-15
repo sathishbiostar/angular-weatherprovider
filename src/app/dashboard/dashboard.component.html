@@ -1,53 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-12 col-sm-12"><h1>
-      Current Weather in Your City!</h1></div>
-  </div>
-  <div class="row">
-   
-   <div #getHeight class="col-xs-12 col-md-4 col-sm-4 customWrapper" *ngFor="let data of cityName;let i = index">
-      <i (click)="editEvent(data,i)" *ngIf="data.enableedit" class="fas fa-edit"></i>
-      
-       <div class="card"  [style.height.px]="setHeight" (click)="data.enableinput = true;" [ngClass]=
-      "data.enableEditClick ? 'activepage':'inactive'"  [ngStyle]="{'background-image':data.enableEditClick? 'url(https://openweathermap.org/img/wn/'+data.getWeatherResult.weather[0].icon+'@2x.png)' : data.enableinput? 'url(https://openweathermap.org/img/wn/@2x.png)' : 'url(https://icons.veryicon.com/64/Business/Seo%20Services/pay%20per%20click.png)'}">
-      
-           <form [formGroup]="weatherInputForm" *ngIf="data.enableinput">
-              <div class="input-group mb-3"> 
-                <input type="text" [(ngModel)]="data.enteredCity" class="form-control cityinput" formControlName="cityName" placeholder="City Name" aria-label="cityName" aria-describedby="basic-addon1">
-               
-                  <div class="input-group-prepend">
-                      <span class="input-group-text" (click)="onSubmit(data.enteredCity,i)" id="basic-addon1"><i class="fas fa-search"></i></span>
-                  </div>
-                   <h6 class="error" *ngIf="data.invalidCity">Invalid City</h6>
-                   </div>
-      </form>
-    <ng-container *ngIf="data.getWeatherResult.main && data.enableedit">
-      <h2 class="text-center">{{data.getWeatherResult.name}} - {{data.getWeatherResult.main.temp | number:'1.0-0'}}&#176;F</h2>
-      <p class="text-center description">{{data.getWeatherResult.weather[0].description}}</p>
-      <table class="table table-striped">
-    
-    <tbody>
-      <tr>
-        <td>Humidity</td>
-        <td>{{data.getWeatherResult.main.humidity}}%</td>
-      </tr>
-      <tr>
-        <td>Pressure</td>
-        <td>{{data.getWeatherResult.main.pressure}} hpa</td>
-      </tr>
-      <tr>
-        <td>Sunrise</td>
-        <td>{{data.getWeatherResult.sys.sunrise * 1000 | date:'H:mm'}}</td>
-      </tr>
-      <tr>
-        <td>Sunset</td>
-        <td>{{data.getWeatherResult.sys.sunset * 1000 | date:'H:mm'}}</td>
-      </tr>
-    </tbody>
-  </table>
-    </ng-container>
-          
-        </div>
-    </div>
-  </div>
+   <div class="row">
+      <div class="col-xs-12 col-md-12 col-sm-12">
+         <h1>
+            Current Weather in Your City!
+         </h1>
+      </div>
+   </div>
+   <div class="row">
+      <div #getHeight class="col-xs-12 col-md-4 col-sm-4 customWrapper" *ngFor="let data of cityName;let i = index">
+         <i (click)="editEvent(data,i)" *ngIf="data.enableedit" class="fas fa-edit"></i>
+         <div class="card"  [style.height.px]="setHeight" (click)="data.enableinput = true;" [ngClass]=
+         "data.enableEditClick ? 'activepage':'inactive'"  [ngStyle]="{'background-image':data.enableEditClick? 'url(https://openweathermap.org/img/wn/'+data.getWeatherResult.weather[0].icon+'@2x.png)' : data.enableinput? 'url(https://openweathermap.org/img/wn/@2x.png)' : 'url(https://icons.veryicon.com/64/Business/Seo%20Services/pay%20per%20click.png)'}">
+         <form [formGroup]="weatherInputForm" *ngIf="data.enableinput">
+         <div class="input-group mb-3">
+            <input type="text" [(ngModel)]="data.enteredCity" class="form-control cityinput" formControlName="cityName" placeholder="City Name" aria-label="cityName" aria-describedby="basic-addon1">
+            <div class="input-group-prepend">
+               <span class="input-group-text" (click)="onSubmit(data.enteredCity,i)" id="basic-addon1"><i class="fas fa-search"></i></span>
+            </div>
+            <h6 class="error" *ngIf="data.invalidCity">Invalid City</h6>
+         </div>
+         </form>
+         <ng-container *ngIf="data.getWeatherResult.main && data.enableedit">
+            <h2 class="text-center">{{data.getWeatherResult.name}} - {{data.getWeatherResult.main.temp | number:'1.0-0'}}&#176;F</h2>
+            <p class="text-center description">{{data.getWeatherResult.weather[0].description}}</p>
+            <table class="table table-striped">
+               <tbody>
+                  <tr>
+                     <td>Humidity</td>
+                     <td>{{data.getWeatherResult.main.humidity}}%</td>
+                  </tr>
+                  <tr>
+                     <td>Pressure</td>
+                     <td>{{data.getWeatherResult.main.pressure}} hpa</td>
+                  </tr>
+                  <tr>
+                     <td>Sunrise</td>
+                     <td>{{data.getWeatherResult.sys.sunrise * 1000 | date:'H:mm'}}</td>
+                  </tr>
+                  <tr>
+                     <td>Sunset</td>
+                     <td>{{data.getWeatherResult.sys.sunset * 1000 | date:'H:mm'}}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </ng-container>
+      </div>
+   </div>
+</div>
 </div>
